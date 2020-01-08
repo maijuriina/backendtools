@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApiTask1.Repositories;
+using WebApiTask1.Services;
 
 namespace WebApiTask1.Controllers
 {
@@ -11,18 +13,34 @@ namespace WebApiTask1.Controllers
     [ApiController]
     public class PersonsController : ControllerBase
     {
-        // GET: api/Persons
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // inject repository layer through interface
+        private readonly IPersonRepository _personRepository;
+
+        // inject service layer
+        private readonly IPersonService _personService;
+
+        // define constructor
+        public PersonsController(IPersonRepository personRepository, IPersonService personService)
         {
-            return new string[] { "value1", "value2" };
+            _personRepository = personRepository;
+            _personService = personService;
         }
 
-        // GET: api/Persons/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+
+        // GET: api/Persons
+        [HttpGet]
+        public IActionResult Get() // IActionResult does not know what is returned
         {
-            return "value";
+            var result = _personService.Read();
+            return new JsonResult(result); // returns result in json-format back to front
+        }
+
+        // GET: api/Persons/id
+        [HttpGet("{id}", Name = "Get")]
+        public IActionResult Get(string id)
+        {
+            var result = _personRepository.Read(id);
+            return new JsonResult(result);
         }
 
         // POST: api/Persons
