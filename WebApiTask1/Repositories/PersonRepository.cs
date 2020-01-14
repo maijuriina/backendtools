@@ -21,8 +21,6 @@ namespace WebApiTask1.Repositories
         public Person Create(Person person) // person comes from front end
         {
             Person newPerson = new Person();
-            newPerson.Name = "Terho Taisto";
-            newPerson.Age = 47;
             // with SQL use InsertInto
             _persondbContext.Person.Add(newPerson);
             _persondbContext.SaveChanges();
