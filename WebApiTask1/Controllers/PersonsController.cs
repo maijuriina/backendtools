@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebApiTask1.Models;
 using WebApiTask1.Repositories;
 using WebApiTask1.Services;
 
@@ -45,20 +46,24 @@ namespace WebApiTask1.Controllers
 
         // POST: api/Persons
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Person person)
         {
+            var result = _personRepository.Create(person);
+            return new JsonResult(result);
         }
 
         // PUT: api/Persons/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+            var x = 1;
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var x = 1;
         }
     }
 }

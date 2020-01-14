@@ -18,6 +18,17 @@ namespace WebApiTask1.Repositories
             _persondbContext = persondbContext;
         }
 
+        public Person Create(Person person) // person comes from front end
+        {
+            Person newPerson = new Person();
+            newPerson.Name = "Terho Taisto";
+            newPerson.Age = 47;
+            // with SQL use InsertInto
+            _persondbContext.Person.Add(newPerson);
+            _persondbContext.SaveChanges();
+            return newPerson;
+        }
+
         public List<Person> Read() // searches all users
         {
             var users = _persondbContext.Person.ToList();
@@ -28,6 +39,17 @@ namespace WebApiTask1.Repositories
         {
             var user = _persondbContext.Person.FirstOrDefault(p => p.Id == id);
             return user;
+        }
+
+        public Person Update(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Delete(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

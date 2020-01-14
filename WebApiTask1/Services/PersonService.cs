@@ -18,6 +18,11 @@ namespace WebApiTask1.Services
             _personRepository = personRepository;
         }
 
+        public Person Create(Person person)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Person> Read()
         {
             return _personRepository.Read();
@@ -26,6 +31,16 @@ namespace WebApiTask1.Services
         public Person Read(string id)
         {
             return _personRepository.Read(id);
+        }
+
+        public Person Update(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

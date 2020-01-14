@@ -8,7 +8,10 @@ namespace WebApiTask1.Services
 {
     public interface IPersonService
     {
+        Person Create(Person person);
         List<Person> Read();
         Person Read(string id);
+        Person Update(string id);
+        void Delete(string id);
     }
 }
