@@ -54,16 +54,17 @@ namespace WebApiTask1.Controllers
 
         // PUT: api/Persons/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        //public void Put(int id, [FromBody] string value)
+        public void Put(string id)
         {
-            var x = 1;
+            _personService.Update(id);
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
-            var x = 1;
+            _personService.Delete(id);
         }
     }
 }

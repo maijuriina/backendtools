@@ -39,15 +39,16 @@ namespace WebApiTask1.Repositories
             return user;
         }
 
-        public Person Update(string id)
+        public void Update(Person personToUpdate)
         {
-            throw new NotImplementedException();
+            _persondbContext.Person.Update(personToUpdate);
+            _persondbContext.SaveChanges();
         }
 
-
-        public void Delete(string id)
+        public void Delete(Person personToDelete)
         {
-            throw new NotImplementedException();
+            _persondbContext.Person.Remove(personToDelete);
+            _persondbContext.SaveChanges();
         }
     }
 }

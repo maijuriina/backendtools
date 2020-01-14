@@ -33,14 +33,18 @@ namespace WebApiTask1.Services
             return _personRepository.Read(id);
         }
 
-        public Person Update(string id)
+        public void Update(string id)
         {
-            throw new NotImplementedException();
+            Person personToUpdate = _personRepository.Read(id);
+            personToUpdate.Name = "Oiva Uutukainen";
+            personToUpdate.Age = 11;
+            _personRepository.Update(personToUpdate);
         }
 
         public void Delete(string id)
         {
-            throw new NotImplementedException();
+            Person personToDelete = _personRepository.Read(id);
+            _personRepository.Delete(personToDelete);
         }
     }
 }
