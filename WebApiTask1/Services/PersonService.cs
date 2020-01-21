@@ -20,7 +20,7 @@ namespace WebApiTask1.Services
 
         public Person Create(Person person)
         {
-            throw new NotImplementedException();
+            return _personRepository.Create(person);
         }
 
         public List<Person> Read()
@@ -33,12 +33,12 @@ namespace WebApiTask1.Services
             return _personRepository.Read(id);
         }
 
-        public void Update(string id)
+        public Person Update(Person person)
         {
-            Person personToUpdate = _personRepository.Read(id);
-            personToUpdate.Name = "Oiva Uutukainen";
-            personToUpdate.Age = 11;
-            _personRepository.Update(personToUpdate);
+            // Person personToUpdate = _personRepository.Read(id);
+            // personToUpdate.Name = "Oiva Uutukainen";
+            // personToUpdate.Age = 11;
+            return _personRepository.Update(person);
         }
 
         public void Delete(string id)

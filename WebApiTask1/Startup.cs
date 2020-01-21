@@ -15,6 +15,8 @@ using WebApiTask1.Data;
 using WebApiTask1.Repositories;
 using WebApiTask1.Services;
 
+
+
 namespace WebApiTask1
 {
     public class Startup
@@ -35,6 +37,13 @@ namespace WebApiTask1
             {
                 option.UseSqlServer(Configuration.GetConnectionString("LocalPersonConnectionString"));
             });
+
+            // Ignore JSON serialization (2017)
+            // services.AddMvc().AddJsonOptions(json => json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            // Ignore JSON Core 3.0 to prevent self-referencing
+            services.AddMvc().AddNewtonsoftJson();
+
             services.AddControllers();
         }
 

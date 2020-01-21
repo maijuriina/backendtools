@@ -48,16 +48,17 @@ namespace WebApiTask1.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Person person)
         {
-            var result = _personRepository.Create(person);
+            var result = _personService.Create(person);
             return new JsonResult(result);
         }
 
         // PUT: api/Persons/5
         [HttpPut("{id}")]
         //public void Put(int id, [FromBody] string value)
-        public void Put(string id)
+        public IActionResult Put(Person person)
         {
-            _personService.Update(id);
+            var result = _personService.Update(person);
+            return new JsonResult(result);
         }
 
         // DELETE: api/ApiWithActions/5

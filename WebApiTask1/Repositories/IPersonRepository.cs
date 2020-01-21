@@ -11,7 +11,7 @@ namespace WebApiTask1.Repositories
         Person Create(Person person); // returns Person, otherwise would be void
         List<Person> Read();
         Person Read(string id);
-        void Update(Person personToUpdate);
+        Person Update(Person personToUpdate);
         void Delete(Person personToDelete);
     }
 }

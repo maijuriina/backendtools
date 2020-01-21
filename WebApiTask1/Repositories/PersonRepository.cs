@@ -20,15 +20,20 @@ namespace WebApiTask1.Repositories
 
         public Person Create(Person person) // person comes from front end
         {
-            Person newPerson = new Person();
-            // with SQL use InsertInto
-            _persondbContext.Person.Add(newPerson);
+            // 1. INSERT adds person to Person-table
+            // 2. SELECT read and save person's ID
+            // 3. INSERT adds phone numbers to Phone-table, key is ID
+            _persondbContext.Person.Add(person);
             _persondbContext.SaveChanges();
-            return newPerson;
+            return person;
         }
 
         public List<Person> Read() // searches all users
         {
+            // SELECT * FROM PERSON
+            // LEFT OUTER JOIN
+            // Phone ON Person.Id = Phone.PersonId
+            // SQL-INJECTION DANGER: WHERE Person.Id = 'SELECT ...' as string emitted can be an SQL command
             var users = _persondbContext.Person.ToList();
             return users; // you can also return _persondbContext.. straight away, but saved to var users for testing
         }
@@ -39,10 +44,11 @@ namespace WebApiTask1.Repositories
             return user;
         }
 
-        public void Update(Person personToUpdate)
+        public Person Update(Person personToUpdate)
         {
             _persondbContext.Person.Update(personToUpdate);
             _persondbContext.SaveChanges();
+            return personToUpdate;
         }
 
         public void Delete(Person personToDelete)
