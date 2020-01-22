@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +35,9 @@ namespace WebApiTask1.Repositories
             // LEFT OUTER JOIN
             // Phone ON Person.Id = Phone.PersonId
             // SQL-INJECTION DANGER: WHERE Person.Id = 'SELECT ...' as string emitted can be an SQL command
-            var users = _persondbContext.Person.ToList();
+            var users = _persondbContext.Person
+                .Include(p=>p.Phone)
+                .ToList();
             return users; // you can also return _persondbContext.. straight away, but saved to var users for testing
         }
 

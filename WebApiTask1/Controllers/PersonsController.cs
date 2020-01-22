@@ -54,7 +54,7 @@ namespace WebApiTask1.Controllers
 
         // PUT: api/Persons/5
         [HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
+        //public void Put(string id, [FromBody] string value)
         public IActionResult Put(Person person)
         {
             var result = _personService.Update(person);

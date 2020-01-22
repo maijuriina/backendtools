@@ -39,7 +39,7 @@ namespace WebApiTask1
             });
 
             // Ignore JSON serialization (2017)
-            // services.AddMvc().AddJsonOptions(json => json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddMvc().AddNewtonsoftJson(json => json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             // Ignore JSON Core 3.0 to prevent self-referencing
             services.AddMvc().AddNewtonsoftJson();
