@@ -8,10 +8,10 @@ namespace WebApiTask1.Repositories
 {
     public interface IPersonRepository
     {
-        Person Create(Person person); // returns Person, otherwise would be void
+        Person Create(Person person);
         List<Person> Read();
         Person Read(string id);
         Person Update(Person personToUpdate);
-        void Delete(Person personToDelete);
+        Person Delete (Person personToDelete);
     }
 }

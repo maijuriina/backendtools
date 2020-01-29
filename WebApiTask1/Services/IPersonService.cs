@@ -12,6 +12,6 @@ namespace WebApiTask1.Services
         List<Person> Read();
         Person Read(string id);
         Person Update(Person person);
-        void Delete(string id);
+        Person Delete(Person person);
     }
 }

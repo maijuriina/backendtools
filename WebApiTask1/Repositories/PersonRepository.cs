@@ -43,7 +43,8 @@ namespace WebApiTask1.Repositories
 
         public Person Read(string id) // searches for specific user with id
         {
-            var user = _persondbContext.Person.FirstOrDefault(p => p.Id == id);
+            var user = _persondbContext.Person.Include(p=>p.Phone)
+                .FirstOrDefault(p => p.Id == id);
             return user;
         }
 
@@ -54,10 +55,11 @@ namespace WebApiTask1.Repositories
             return personToUpdate;
         }
 
-        public void Delete(Person personToDelete)
+        public Person Delete(Person personToDelete)
         {
             _persondbContext.Person.Remove(personToDelete);
             _persondbContext.SaveChanges();
+            return personToDelete;
         }
     }
 }

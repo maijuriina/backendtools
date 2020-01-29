@@ -41,10 +41,11 @@ namespace WebApiTask1.Services
             return _personRepository.Update(person);
         }
 
-        public void Delete(string id)
+        public Person Delete(Person person)
         {
-            Person personToDelete = _personRepository.Read(id);
+            Person personToDelete = _personRepository.Read(person.Id);
             _personRepository.Delete(personToDelete);
+            return personToDelete;
         }
     }
 }

@@ -63,9 +63,10 @@ namespace WebApiTask1.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public void Delete(Person person)
         {
-            _personService.Delete(id);
+            _personService.Delete(person);
+
         }
     }
 }
